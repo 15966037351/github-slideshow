@@ -1,0 +1,103 @@
+package com.company;
+import java.util.Scanner;//获取包
+import java.util.Arrays;
+
+public class Main {
+
+    public static void main(String[] args) {
+        //欢迎界面,询问是否租车
+        Scanner input = new Scanner(System.in);
+        System.out.println("欢迎使用达达租车系统:");
+        System.out.println("您是否要租车:1是 0否");
+        //如果租车输出车辆信息,不租车则结束程序
+        int choice1 = input.nextInt();
+
+        if (choice1 == 1) {
+            System.out.println("您可租车的类型及其价目:");
+                System.out.println("序号  汽车名称    租金    载人(人) 载货(吨) ");
+                System.out.println(" 1    奥迪A4     500/d    4        /     ");
+                System.out.println(" 2    马自达6    500/d     4        /     ");
+                System.out.println(" 3    皮卡雪6    500/d     4        2     ");
+                System.out.println(" 4    金龙       500/d    20        /     ");
+                System.out.println(" 5    松花江     500/d     /        4     ");
+                System.out.println(" 6    依维柯     500/d     /        20     ");
+            }
+         else {
+            System.exit(0);
+        }
+        System.out.println("请输入您要租车的数量");
+        int choice2 = input.nextInt();//输入租车数量
+        int[] carNum = new int[choice2];//选择的车的编号作为一个数组
+        //输入车的序号并赋值给数组
+        for (int i = 0; i < choice2; i++) {
+            //如果i小于租车数量
+            System.out.println("请输入第" + (i + 1) + "辆车的序号:");
+            carNum[i] = input.nextInt();
+        }
+
+        System.out.println("请输入租车天数");
+        int dayRent = input.nextInt();//输入租车天数
+        System.out.println("您的账单:");
+        System.out.println("****可载人的车有:");
+        int moneySum = 0;//计算总价格
+        int peoSum = 0;//计算总人数
+        int goodsSum = 0;//计算总货物
+        for (int carnum : carNum) {
+            switch (carnum) {
+                case 1:
+                    System.out.print(" 奥迪A4 ");
+                    moneySum = moneySum + 500;
+                    peoSum = peoSum + 4;
+                    break;
+                case 2:
+                    System.out.print(" 马自达6 ");
+                    moneySum = moneySum + 400;
+                    peoSum = peoSum + 4;
+                    break;
+                case 3:
+                    System.out.print(" 皮卡雪6 ");
+                    moneySum = moneySum + 450;
+                    peoSum = peoSum + 4;
+                    break;
+                case 4:
+                    System.out.print(" 金龙 ");
+                    moneySum = moneySum + 800;
+                    peoSum = peoSum + 20;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+            System.out.println("共载人:"+peoSum+"人");
+        for (int carnum : carNum) {
+            switch (carnum) {
+                case 3:
+                    System.out.print(" 皮卡雪6 ");
+                    goodsSum = goodsSum + 2;
+                    break;
+                case 5:
+                    System.out.print(" 松花江 ");
+                    goodsSum = goodsSum + 4;
+                    moneySum=moneySum+400;
+                case 6:
+                    System.out.print(" 依维柯 ");
+                    goodsSum = goodsSum + 20;
+                    moneySum = moneySum + 1000;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+
+            System.out.println("****载货的车有:");
+
+        System.out.println("共载货:"+goodsSum+"吨");
+        moneySum=moneySum*dayRent;
+            System.out.println("租车总价格为:"+moneySum+"元");
+
+
+
+    }}
